@@ -1,33 +1,51 @@
 const express = require('express');
-const logger = require('./logger')
+const logger = require('../logger/logger.js')
+const helper = require('../util/helper.js')
+const formatter = require('../validation/formatter.js')
 
 const router = express.Router();
 
-router.get('/test-me', function (req, res) {
-    console.log('I am inside the first route handler')
-    console.log('The endpoint value is', logger.endpoint)
-    console.log('Calling log function')
-    logger.logging()
+router.get('/test-me', function(req, res) {
+
+    logger.welcome();
+    helper.printDate();
+    helper.printMonth();
+    helper.getBatchInfo();
+    formatter.trim("functionUP");
+    formatter.changetoLowerCase("FunctioUp is Coding BootCamp");
+    formatter.changetoLowerCase("FunctioUp is Coding BootCamp");
     res.send('My first ever api!')
 });
+router.get('/hello', function(req, res) {
+    let monthNames = ["january", "March", "April", "May", "June", "July",
+        "August", "september", "October", "November", "December"
+    ];
 
-router.get('/test-me2', function (req, res) {
-    console.log('I am inside the second route handler')
-    res.send('My second ever api!')
+    let _ = require("lodash");
+    console.log(_.chunk(monthNames, monthNames.length / 4));
+    let oddArray = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
+    console.log(_.tail(oddArray))
+
+    let unionFx = function(...a) {
+        return _.union(...a);
+    }
+    let a1 = [1, 5, 6, 4];
+    let a2 = [3, 4, 5, 7];
+    let a3 = [7, 6, 7, 9];
+    let a4 = [3, 2, 3, 4];
+    let a5 = [1, 8, 3, 9];
+    console.log(unionFx(a1, a2, a3, a4, a5));
+
+    let movies = [
+        ["horror", "The Shining"],
+        ["drama", "Titanic"],
+        ["Thriller", "Shutter Island"],
+        ["fantasy", "pans Labyrinth"]
+    ]
+    console.log(_.fromPairs(moviesArr));
+    res.send('problem 4');
 });
 
-
-router.get('/test-me5', function (req, res) {
-    res.send('My final ever api!')
-});
-
-router.get('/test-me3', function (req, res) {
-    res.send('My first ever api!')
-});
-
-router.get('/test-me4', function (req, res) {
-    res.send('My first ever api!')
-});
 
 module.exports = router;
 // adding this comment for no reason
