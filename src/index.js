@@ -7,14 +7,14 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect("mongodb+srv://pattamu:iKHwECgQCaYNVpge@sandeepcluster.9rzkh.mongodb.net/Sandeep467-DB?retryWrites=true&w=majority", {
-    useNewUrlParser: true
-})
-.then( () => console.log("MongoDb is connected"))
-.catch ( err => console.log(err) )
+mongoose.connect("mongodb+srv://harshshri:harsh001@cluster0.zdm3o.mongodb.net/harsh001", {
+        useNewUrlParser: true
+    })
+    .then(() => console.log("MongoDb is connected"))
+    .catch(err => console.log(err))
 
 app.use('/', route);
 
-app.listen(process.env.PORT || 4000, function () {
+app.listen(process.env.PORT || 4000, function() {
     console.log('Express app running on port ' + (process.env.PORT || 4000))
 });
